@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Terminal (offline)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+    html,body{height:100%;margin:0;background:#0b0b0b;color:#eaeaea;font:15px system-ui}
+    .wrap{height:100%;display:grid;place-items:center}
+    .card{max-width:720px;padding:20px;border-radius:12px;background:#111;box-shadow:0 4px 30px rgba(0,0,0,.35)}
+    .title{font-weight:700;margin:0 0 8px}
+    .msg{white-space:pre-wrap;opacity:.9}
+</style>
+<div class="wrap">
+    <div class="card">
+        <h1 class="title">Нет связи с сервером</h1>
+        <div id="log" class="msg">Пробуем подключиться…</div>
+    </div>
+</div>
+<script>
+    // Получаем статусы от main, отображаем их.
+    window.native?.onStatus?.((m) => { document.getElementById('log').textContent = m; });
+</script>

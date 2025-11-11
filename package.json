@@ -1,0 +1,21 @@
+{
+  "name": "terminal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "dev:local": "cross-env UI_MODE=local ALLOW_DEVTOOLS=0 ADMIN_PIN=1234 electron .",
+    "dev:lan": "cross-env UI_MODE=remote APP_URL=http://192.168.1.16:5173 ALLOW_DEVTOOLS=0 ADMIN_PIN=1234 electron .",
+    "dev:domain": "cross-env UI_MODE=remote APP_URL=https://terminal.example.com ALLOW_DEVTOOLS=0 ADMIN_PIN=1234 electron .",
+    "devtools:lan": "cross-env UI_MODE=remote APP_URL=http://192.168.1.16:5173 ALLOW_DEVTOOLS=1 ADMIN_PIN=1234 electron ."
+  },
+
+  "dependencies": {
+    "serialport": "^12.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^31.0.0"
+  }
+}

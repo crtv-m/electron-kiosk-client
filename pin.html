@@ -1,0 +1,41 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>PIN</title>
+<style>
+    html,body{margin:0;height:100%;font:14px system-ui;background:#111;color:#eee}
+    .wrap{height:100%;display:flex;align-items:center;justify-content:center}
+    .box{width:320px;padding:16px 18px;background:#1b1b1b;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.4);text-align:center}
+    h3{margin:0 0 12px;font-weight:600}
+    input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #333;background:#0f0f0f;color:#eee;outline:none;letter-spacing:2px;text-align:center}
+    .row{display:flex;gap:8px;margin-top:12px}
+    button{flex:1;padding:10px 12px;border:0;border-radius:8px;background:#2a6df4;color:#fff;cursor:pointer}
+    button.sec{background:#444}
+    .msg{min-height:18px;margin-top:8px;color:#f55;font-size:12px}
+</style>
+<div class="wrap">
+    <div class="box">
+        <h3>Введите PIN</h3>
+        <input id="pin" type="password" inputmode="numeric" maxlength="12" autofocus />
+        <div class="row">
+            <button class="sec" id="cancel">Отмена</button>
+            <button id="ok">Ок</button>
+        </div>
+        <div class="msg" id="msg"></div>
+    </div>
+</div>
+<script>
+    document.getElementById("ok").onclick = async () => {
+        const pin = document.getElementById("pin").value.trim();
+        const res = await window.pinAPI.submit(pin);
+        if (!res?.ok) {
+            document.getElementById("msg").textContent = "Неверный PIN";
+            document.getElementById("pin").value = "";
+            document.getElementById("pin").focus();
+        }
+    };
+    document.getElementById("cancel").onclick = () => window.pinAPI.cancel();
+    document.getElementById("pin").addEventListener("keydown", (e)=>{
+        if (e.key === "Enter") document.getElementById("ok").click();
+        if (e.key === "Escape") document.getElementById("cancel").click();
+    });
+</script>
