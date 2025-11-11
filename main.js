@@ -1,4 +1,3 @@
-// Безопасный киоск + COM и монитор доступности сервера.
 import { app, BrowserWindow, screen, ipcMain, session } from "electron";
 import { fileURLToPath } from "url";
 import path from "path";
